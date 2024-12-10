@@ -20,10 +20,6 @@ npm run lint
 npm run preview
 ```
 
-## Resources
-
-https://vite.dev/guide/static-deploy
-
 ## Modifications
 
 ### `vite-config.ts`
@@ -42,3 +38,8 @@ base: '/2024-xmas-game/'
 
 * `react-router-dom`
 
+## Resources
+
+https://vite.dev/guide/static-deploy
+
+https://medium.com/@galohernandez/vite-react-react-router-dom-the-latest-way-312ee887197e
