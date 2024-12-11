@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "motion/react";
-import { ReactNode, useId, useState } from "react";
+import { createRef, ReactNode, useId, useState } from "react";
 
 export interface TileProps {
     config: {
@@ -40,6 +40,7 @@ const animationConfig = {
 
 export default function AnimatedTile(props: TileProps) {
     const id = useId();
+    const animatedDivRef = createRef<HTMLDivElement>();
     const [currentState, setCurrentState] = useState<TileState>(TileState.Initial);
 
     const getConfig = (state: TileState) => {
@@ -53,11 +54,16 @@ export default function AnimatedTile(props: TileProps) {
         };
     };
 
-    const onTileClick = () => {
-        switch (currentState) {
-            case TileState.Initial:
-                setCurrentState(TileState.Input);
-                break;
+    const onTileClick: React.MouseEventHandler<HTMLDivElement> = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        if (event.target === animatedDivRef.current) {
+            switch (currentState) {
+                case TileState.Initial:
+                    setCurrentState(TileState.Input);
+                    break;
+                case TileState.Input:
+                    setCurrentState(TileState.Initial);
+                    break;
+            }
         }
     };
 
@@ -65,6 +71,7 @@ export default function AnimatedTile(props: TileProps) {
         <div style={{ width: '100%', height: '100%', overflow: 'hidden', position: 'relative' }}>
             <AnimatePresence initial={false}>
                 <motion.div
+                    ref={animatedDivRef}
                     key={`tile-${id}-content-${currentState}`}
                     style={{
                         position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
