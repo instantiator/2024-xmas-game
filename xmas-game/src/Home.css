@@ -4,14 +4,12 @@ div.main {
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    background-color: lightseagreen;
+    background-color: white;
 }
 
 div.main-view {
     display: block;
+    position: relative;
     flex-grow: 1;
     padding: 1rem;
-    border-radius: 0.5rem;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }

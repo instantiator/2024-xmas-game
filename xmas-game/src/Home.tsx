@@ -1,10 +1,11 @@
+import Game from './components/Game';
 import './Home.css';
 
 export default function Home() {
     return (<>
         <div className="main">
             <div className="main-view">
-                home
+                <Game />
             </div>
         </div>
     </>);

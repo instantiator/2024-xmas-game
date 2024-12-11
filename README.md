@@ -30,13 +30,17 @@ base: '/2024-xmas-game/'
 
 ### Workflow
 
+See: `.github/workshops/deploy-pages.yaml`
+
 * Enabled deployment from GHA
 * Set node version to `22`
 * Updated paths to build and deploy from the `xmas-game` directory
 
-## Packages
+## Additional packages
 
-* `react-router-dom`
+### `react-router-dom`
+
+`react-router` with some DOM specific functions. See: `App.tsx`
 
 ## Resources
 
