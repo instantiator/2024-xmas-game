@@ -51,8 +51,12 @@ See: `.github/workshops/deploy-pages.yaml`
 
 ### `motion`
 
+Animation library.
+
 ## Resources
 
 https://vite.dev/guide/static-deploy
 
 https://medium.com/@galohernandez/vite-react-react-router-dom-the-latest-way-312ee887197e
+
+https://motion.dev/docs/react-transitions
