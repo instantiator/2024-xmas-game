@@ -28,6 +28,13 @@ npm run preview
 base: '/2024-xmas-game/'
 ```
 
+### `tsconfig.app.json`
+
+```json
+"noUnusedLocals": false,
+"noUnusedParameters": false,
+```
+
 ### Workflow
 
 See: `.github/workshops/deploy-pages.yaml`
@@ -41,6 +48,8 @@ See: `.github/workshops/deploy-pages.yaml`
 ### `react-router-dom`
 
 `react-router` with some DOM specific functions. See: `App.tsx`
+
+### `motion`
 
 ## Resources
 
