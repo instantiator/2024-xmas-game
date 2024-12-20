@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "motion/react";
 import { createRef, ReactNode, useId, useState } from "react";
+import Parchment from "./Parchment";
 
 export interface TileProps {
     config: {
@@ -14,6 +15,7 @@ export interface TileConfig {
     backgroundImage?: string;
     content?: ReactNode;
     css?: string;
+    answer?: string;
 };
 
 export enum TileState {
@@ -56,14 +58,25 @@ export default function AnimatedTile(props: TileProps) {
 
     const onTileClick: React.MouseEventHandler<HTMLDivElement> = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         if (event.target === animatedDivRef.current) {
-            switch (currentState) {
-                case TileState.Initial:
-                    setCurrentState(TileState.Input);
-                    break;
-                case TileState.Input:
-                    setCurrentState(TileState.Initial);
-                    break;
-            }
+            tileClicked();
+        }
+    };
+
+    const tileClicked = () => {
+        switch (currentState) {
+            case TileState.Initial:
+                setCurrentState(TileState.Input);
+                break;
+            case TileState.Input:
+                setCurrentState(TileState.Initial);
+                break;
+        }
+
+    };
+
+    const onAnswerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.value.trim().toLowerCase() === props.config.input.answer?.trim().toLowerCase()) {
+            setCurrentState(TileState.Complete);
         }
     };
 
@@ -75,27 +88,26 @@ export default function AnimatedTile(props: TileProps) {
                     key={`tile-${id}-content-${currentState}`}
                     style={{
                         position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-                        backgroundImage: getConfig(currentState).backgroundImage ? `url(${getConfig(currentState).backgroundImage})` : 'none',
-                        backgroundSize: 'contain',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '1rem',
-                        alignItems: 'center',
-                        justifyContent: 'center',
+                        display: 'flex', flexDirection: 'column',
+                        justifyContent: 'center', alignItems: 'stretch', 
+                        gap: '1rem'
                     }}
                     onClick={onTileClick}
                     initial={animationConfig.initial[getConfig(currentState).transition || 'scale']}
                     animate={animationConfig.animate[getConfig(currentState).transition || 'scale']}
                     exit={animationConfig.exit[getConfig(currentState).transition || 'scale']}>
-                    <div>{getConfig(currentState).content}</div>
-                    {currentState === TileState.Input && <>
-                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
-                            <span>enter your answer here</span>
-                            <input type="text" style={{ textTransform: 'uppercase', fontSize: '2rem', alignSelf: 'stretch' }} />
-                        </div>
-                    </>}
+                    <div style={{ flexGrow: 1, overflow: 'hidden' }}>
+                        <Parchment image={getConfig(currentState).backgroundImage} onClick={tileClicked} style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+                            <div>{getConfig(currentState).content}</div>
+                            {currentState === TileState.Input && <>
+                                <span>enter your answer here</span>
+                                <input
+                                    type="text"
+                                    onChange={onAnswerChange}
+                                    style={{ textTransform: 'uppercase', fontSize: '2rem', alignSelf: 'stretch' }} />
+                            </>}
+                        </Parchment>
+                    </div>
                 </motion.div>
             </AnimatePresence>
         </div>

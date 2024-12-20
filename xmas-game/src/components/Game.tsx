@@ -29,26 +29,26 @@ export default function Game(props: GameProps) {
                 tiles={[
                     <AnimatedTile config={{
                         initial: { content: <></>, backgroundImage: bear, transition: 'scale' },
-                        input: { content: <span>riddle 1</span>, backgroundImage: parchment, transition: 'scaleX' },
-                        complete: { content: <span>complete 1</span>, backgroundImage: parchment }
+                        input: { content: <span>riddle 1</span>, backgroundImage: parchment, transition: 'scaleX', answer: 'answer' },
+                        complete: { content: <span>complete 1</span>, backgroundImage: parchment, transition: 'scaleY' }
                     }}
                     />,
                     <AnimatedTile config={{
                         initial: { content: <></>, backgroundImage: bear, transition: 'scale' },
-                        input: { content: <span>riddle 2</span>, backgroundImage: parchment, transition: 'scaleX' },
-                        complete: { content: <span>complete 2</span>, backgroundImage: parchment }
+                        input: { content: <span>riddle 2</span>, backgroundImage: parchment, transition: 'scaleX', answer: 'answer' },
+                        complete: { content: <span>complete 2</span>, backgroundImage: parchment, transition: 'scaleY' }
                     }}
                     />,
                     <AnimatedTile config={{
                         initial: { content: <></>, backgroundImage: bear, transition: 'scale' },
-                        input: { content: <span>riddle 3</span>, backgroundImage: parchment, transition: 'scaleX' },
-                        complete: { content: <span>complete 3</span>, backgroundImage: parchment }
+                        input: { content: <span>riddle 3</span>, backgroundImage: parchment, transition: 'scaleX', answer: 'answer' },
+                        complete: { content: <span>complete 3</span>, backgroundImage: parchment, transition: 'scaleY' }
                     }}
                     />,
                     <AnimatedTile config={{
                         initial: { content: <></>, backgroundImage: bear, transition: 'scale' },
-                        input: { content: <span>riddle 4</span>, backgroundImage: parchment, transition: 'scaleX' },
-                        complete: { content: <span>complete 4</span>, backgroundImage: parchment }
+                        input: { content: <span>riddle 4</span>, backgroundImage: parchment, transition: 'scaleX', answer: 'answer' },
+                        complete: { content: <span>complete 4</span>, backgroundImage: parchment, transition: 'scaleY' }
                     }}
                     />,
                 ]}

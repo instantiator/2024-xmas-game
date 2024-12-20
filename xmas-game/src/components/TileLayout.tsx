@@ -31,7 +31,7 @@ export default function TileLayout(props: OverviewProps) {
                 ...props.style,
             }}>
             {props.tiles.map((component, index) => (
-                <div key={`overview-component-div-${index}`}>
+                <div key={`overview-component-div-${index}`} style={{ width: '100%', height: '100%' }}>
                     {component}
                 </div>
             ))}
