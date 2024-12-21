@@ -13,10 +13,6 @@ export default function Parchment(props: ParchmentProps) {
     const [dimensions, { loading, error }] = useImageSize(props.image ?? parchment);
     const coreDivRef = createRef<HTMLDivElement>();
 
-    const onImageClicked = () => {
-        props.onClick?.();
-    };
-
     const onDivClicked = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         if (event.target === coreDivRef.current) {
             props.onClick?.();
@@ -38,17 +34,17 @@ export default function Parchment(props: ParchmentProps) {
                         overflow: 'hidden',
                         marginLeft: 'auto', marginRight: 'auto'
                     }}>
-                        {/* {props.image &&
-                        <img
-                            src={props.image}
-                            style={{ width: 'auto', height: 'auto' }} />} */}
                         <div
                             ref={coreDivRef}
                             onClick={onDivClicked}
                             style={{
                                 position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
                                 display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center', justifyContent: 'center',
-                                padding: '5%'
+                                paddingLeft: '10%',
+                                paddingRight: '10%',
+                                paddingTop: '0%',
+                                textAlign: 'center',
+                                textWrap: 'balance'
                             }}>
                             {props.children}
                         </div>
